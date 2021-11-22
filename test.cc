@@ -6,11 +6,11 @@ int main() {
     static_assert(numeric_limits<int16_t>::is_integer);
 
     int x = 5;
-    Treasure t(x, true);
+    Treasure t(x);
 
     long long z = 5;
-    Treasure(z, true);
+    Treasure r(z);
 
     //double y = 5;
-    //Treasure(y, false);
+    //Treasure(y);
 }

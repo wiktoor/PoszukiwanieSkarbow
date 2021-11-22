@@ -21,7 +21,7 @@ class Treasure {
         T value;
         IsTrapped isTrapped;
     public: 
-        constexpr Treasure(T value, IsTrapped isTrapped) : value(value), isTrapped(isTrapped) { };
+        constexpr Treasure(T value) : value(value), isTrapped(false) { };
 };
 
 #endif
