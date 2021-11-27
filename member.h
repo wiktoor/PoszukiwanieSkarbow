@@ -40,20 +40,40 @@ class Adventurer {
 template<typename T> requires ValueType<T> 
 using Explorer = Adventurer<T, false>;
 
-/*
 template<typename T, CompletedExpeditions N>
 requires ValueType<T> && (N < 25)
 class Veteran {
 	private:
 		T treasure;
-		IsArmed isArmed;
 		CompletedExpeditions n = N;
 	public: 
-		constexpr Veteran {
-
+		static const IsArmed isArmed = true;
+		constexpr Veteran() : treasure(0) {}
+		constexpr strength_t getStrength() {
+			if (n == 0)
+				return 0;
+			if (n == 1)
+				return 1;
+			
+			strength_t f2 = 0, f1 = 1, res;
+			for (CompletedExpeditions i = 2; i <= n; i++) {
+				res = f2 + f1;
+				f2 = f1;
+				f1 = res;
+			}
+			return res;
 		}
+		constexpr void loot(T &&treasure) {
+			n++;
+			this->treasure += treasure.getLoot();
+		}
+		constexpr T pay() {
+			T result = treasure;
+			treasure = 0;
+			return result;
+		}
+	
 };
-*/
 
 
 #endif
