@@ -6,11 +6,15 @@ int main() {
     static_assert(numeric_limits<int16_t>::is_integer);
 
     int x = 5;
-    Treasure t(x);
+    Treasure<int, true> t(x);
+    SafeTreasure<int> s(x);
+    cout << t.isTrapped << endl;
 
     long long z = 5;
-    Treasure r(z);
+    Treasure<long long, false> r(z);
+    TrappedTreasure<long long> v(z);
+    cout << v.isTrapped << endl;
 
     //double y = 5;
-    //Treasure(y);
+    //SafeTreasure<double> u(y);
 }

@@ -14,14 +14,23 @@ struct isInteger {
 template<typename T>
 concept ValueType = isInteger<T>::value;
 
-template<typename T>
+template<typename T, IsTrapped trapped>
 requires ValueType<T>
 class Treasure {
     private:
         T value;
-        IsTrapped isTrapped;
-    public: 
-        constexpr Treasure(T value) : value(value), isTrapped(false) { };
+    public:
+        static const IsTrapped isTrapped = trapped; 
+        constexpr Treasure(T value) : value(value) { };
 };
+
+template<typename T>
+requires ValueType<T>
+using SafeTreasure = Treasure<T, false>;
+
+template<typename T>
+requires ValueType<T>
+using TrappedTreasure = Treasure<T, true>;
+
 
 #endif
