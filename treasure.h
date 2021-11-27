@@ -22,6 +22,12 @@ class Treasure {
     public:
         static const IsTrapped isTrapped = trapped; 
         constexpr Treasure(T value) : value(value) { };
+        constexpr T evaluate() { return value; }
+        constexpr T getLoot() {
+            T res = value;
+            value = 0;
+            return res;
+        }
 };
 
 template<typename T>

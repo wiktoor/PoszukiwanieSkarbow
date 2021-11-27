@@ -9,6 +9,9 @@ int main() {
     Treasure<int, true> t(x);
     SafeTreasure<int> s(x);
     cout << t.isTrapped << endl;
+    cout << t.evaluate() << endl;
+    cout << t.getLoot() << endl;
+    cout << t.evaluate() << endl;
 
     long long z = 5;
     Treasure<long long, false> r(z);
