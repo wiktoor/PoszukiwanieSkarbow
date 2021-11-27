@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "treasure.h"
+#include "member.h"
 using namespace std;
 
 int main() {
@@ -17,6 +18,12 @@ int main() {
     Treasure<long long, false> r(z);
     TrappedTreasure<long long> v(z);
     cout << v.isTrapped << endl;
+
+    strength_t strength = 42;
+
+    Adventurer<int, true> a(strength);
+    cout << a.isArmed << endl;
+    cout << a.getStrength() << endl;
 
     //double y = 5;
     //SafeTreasure<double> u(y);

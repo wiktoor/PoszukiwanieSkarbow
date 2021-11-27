@@ -21,7 +21,7 @@ class Treasure {
         T value;
     public:
         static const IsTrapped isTrapped = trapped; 
-        constexpr Treasure(T value) : value(value) { };
+        constexpr Treasure(T value) : value(value) { }
         constexpr T evaluate() { return value; }
         constexpr T getLoot() {
             T res = value;
