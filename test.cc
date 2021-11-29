@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include "treasure.h"
 #include "member.h"
+#include "treasure_hunt.h"
 using namespace std;
 
 int main() {
