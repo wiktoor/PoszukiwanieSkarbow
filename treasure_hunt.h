@@ -2,6 +2,7 @@
 #define TREASURE_HUNT_H
 
 #include "treasure.h"
+#include "member.h"
 #include <type_traits>
 #include <concepts>
 
@@ -15,6 +16,7 @@ template<typename T>
 concept isAdventurer = 
 requires (T x) {
     x.pay();
+    { T::isArmed } -> std::convertible_to<bool>;
 };
 
 #endif /* TREASURE_HUNT_H */

@@ -4,6 +4,12 @@
 #include "treasure_hunt.h"
 using namespace std;
 
+template <typename T>
+requires isAdventurer<T>
+void tryAdventurer(T a) {
+    cout << "test " << a.isArmed << endl;
+}
+
 int main() {
     static_assert(numeric_limits<int16_t>::is_integer);
 
@@ -25,6 +31,8 @@ int main() {
     Adventurer<int, true> a(strength);
     cout << a.isArmed << endl;
     cout << a.getStrength() << endl;
+
+    tryAdventurer(a);
 
     //double y = 5;
     //SafeTreasure<double> u(y);
