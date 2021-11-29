@@ -33,6 +33,7 @@ int main() {
     cout << a.getStrength() << endl;
 
     tryAdventurer(a);
+    //tryAdventurer(t);
 
     //double y = 5;
     //SafeTreasure<double> u(y);

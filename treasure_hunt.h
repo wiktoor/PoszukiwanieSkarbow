@@ -15,7 +15,7 @@ requires (T x) {
 template<typename T>
 concept isAdventurer = 
 requires (T x) {
-    x.pay();
+    { x.pay() } -> ValueType;
     { T::isArmed } -> std::convertible_to<bool>;
 };
 
