@@ -18,7 +18,11 @@ requires (T x) {
     //typename T::strength_t;
     { x.pay() } -> ValueType;
     { T::isArmed } -> std::convertible_to<bool>;
-    { SafeTreasure<decltype(x.pay())> a(0); x.loot(a) } -> std::same_as<void>;
+    { [] () constexpr { return T::isArmed; }() };
+    // { SafeTreasure<decltype(x.pay())> a(0); x.loot(a) } -> std::same_as<void>;
 };
+
+template<typename T>
+concept EncounterSide = isTreasure<T> || isAdventurer<T>;
 
 #endif /* TREASURE_HUNT_H */

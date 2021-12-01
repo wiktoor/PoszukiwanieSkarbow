@@ -10,6 +10,12 @@ void tryAdventurer(T a) {
     cout << "test " << a.isArmed << endl;
 }
 
+template<typename T>
+requires EncounterSide<T>
+void tryEncounterSide(T a) {
+
+}
+
 int main() {
     static_assert(numeric_limits<int16_t>::is_integer);
 
@@ -34,6 +40,8 @@ int main() {
 
     tryAdventurer(a);
     //tryAdventurer(t);
+
+    tryEncounterSide(a);
 
     //double y = 5;
     //SafeTreasure<double> u(y);
