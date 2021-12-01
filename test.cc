@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 #include "treasure.h"
 #include "member.h"
@@ -50,14 +51,13 @@ int main() {
     tryEncounterSide(a);
     tryEncounterSide(s);
 
-    Encounter<decltype(a), decltype(c)> encounter1(a, c);
-    Encounter<decltype(b), decltype(d)> encounter2(b, d);
+    Encounter<decltype(b), decltype(s)> encounter1 = {b, s};
+    Encounter<decltype(a), decltype(b)> encounter2 = {a, b};
 
-    //run(encounter1);
-    //run(encounter2);
+	expedition(encounter1, encounter2);
 
-    //cout << a.pay() << endl;
-    //cout << b.pay() << endl;
+    cout << a.pay() << endl;
+    cout << b.pay() << endl;
 
 
     //double y = 5;
