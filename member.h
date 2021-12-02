@@ -13,11 +13,11 @@ template<typename T, IsArmed armed>
 requires ValueType<T> 
 class Adventurer {
 	public:
-		using strength_t = size_t;
+		using strength_t = u_int32_t;
 		static constexpr const IsArmed isArmed = armed;
 		constexpr Adventurer() requires (armed == false) : treasure(0), strength(0) {}
 		constexpr Adventurer(strength_t strength) requires (armed == true): treasure(0), strength(strength) {}
-		constexpr strength_t getStrength() requires (isArmed == true) {
+		constexpr strength_t getStrength() const requires (isArmed == true) {
 			return strength;
 		}
 		constexpr void loot(Treasure<T, true> &&treasure) {
@@ -50,7 +50,7 @@ class Veteran {
 		T treasure;
 		CompletedExpeditions n = N;
 	public: 
-		typedef size_t strength_t;
+		using strength_t = u_int32_t;
 		static constexpr const IsArmed isArmed = true;
 		constexpr Veteran() : treasure(0) {}
 		constexpr strength_t getStrength() {
@@ -68,11 +68,9 @@ class Veteran {
 			return res;
 		}
 		constexpr void loot(Treasure<T, true> &&treasure) {
-			n++;
 			this->treasure += treasure.getLoot();
 		}
 		constexpr void loot(Treasure<T, false> &&treasure) {
-			n++;
 			this->treasure += treasure.getLoot();
 		}
 		constexpr T pay() {
