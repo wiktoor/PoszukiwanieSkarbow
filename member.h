@@ -17,11 +17,11 @@ class Adventurer {
 		static constexpr const IsArmed isArmed = armed;
 		constexpr Adventurer() requires (armed == false) : treasure(0), strength(0) {}
 		constexpr Adventurer(strength_t strength) requires (armed == true): treasure(0), strength(strength) {}
-		constexpr strength_t getStrength() const requires (isArmed == true) {
+		constexpr strength_t getStrength() const requires (armed == true) {
 			return strength;
 		}
 		constexpr void loot(Treasure<T, true> &&treasure) {
-			if (treasure.isTrapped && isArmed && strength > 0) 
+			if (isArmed && strength > 0) 
 				strength /= 2;
 			else
 				return;
@@ -68,7 +68,8 @@ class Veteran {
 			return res;
 		}
 		constexpr void loot(Treasure<T, true> &&treasure) {
-			this->treasure += treasure.getLoot();
+			if (n > 0)
+				this->treasure += treasure.getLoot();
 		}
 		constexpr void loot(Treasure<T, false> &&treasure) {
 			this->treasure += treasure.getLoot();
