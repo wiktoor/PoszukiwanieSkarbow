@@ -7,16 +7,13 @@
 #include "treasure.h"
 
 using IsArmed = bool;
-using strength_t = size_t;
 using CompletedExpeditions = size_t;
 
 template<typename T, IsArmed armed>
 requires ValueType<T> 
 class Adventurer {
-	private:
-		T treasure;
-		strength_t strength;
 	public:
+		using strength_t = size_t;
 		static constexpr const IsArmed isArmed = armed;
 		constexpr Adventurer() requires (armed == false) : treasure(0), strength(0) {}
 		constexpr Adventurer(strength_t strength) requires (armed == true): treasure(0), strength(strength) {}
@@ -38,6 +35,9 @@ class Adventurer {
 			treasure = 0;
 			return result;
 		}
+	private:
+		T treasure;
+		strength_t strength;
 };
 
 template<typename T> requires ValueType<T> 
@@ -50,6 +50,7 @@ class Veteran {
 		T treasure;
 		CompletedExpeditions n = N;
 	public: 
+		typedef size_t strength_t;
 		static constexpr const IsArmed isArmed = true;
 		constexpr Veteran() : treasure(0) {}
 		constexpr strength_t getStrength() {

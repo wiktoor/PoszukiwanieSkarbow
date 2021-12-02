@@ -15,12 +15,12 @@ requires (T x) {
 template<typename T>
 concept isAdventurer = 
 requires (T x) {
-    //typename T::strength_t;
+    typename T::strength_t;
     { x.pay() } -> ValueType;
     { T::isArmed } -> std::convertible_to<bool>;
     { [] () constexpr { return T::isArmed; }() };
-    //SafeTreasure<decltype(x.pay())> a(x.pay());
     { x.loot(SafeTreasure<decltype(x.pay())>(0)) } -> std::same_as<void>;
+    { x.loot(TrappedTreasure<decltype(x.pay())>(0)) } -> std::same_as<void>;
 };
 
 template<typename T>

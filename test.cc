@@ -35,7 +35,7 @@ int main() {
     TrappedTreasure<long long> v(z);
     cout << v.isTrapped << endl;
 
-    strength_t strength = 42;
+    Adventurer<int, true>::strength_t strength = 42;
 
     Adventurer<int, true> a(strength);
     cout << a.isArmed << endl;
@@ -44,6 +44,8 @@ int main() {
     Adventurer<int, false> b;
     Adventurer<int, true> c(strength);
     Adventurer<int, false> d;
+
+    Veteran<int, 5> w;
 
     tryAdventurer(a);
     tryAdventurer(b);
