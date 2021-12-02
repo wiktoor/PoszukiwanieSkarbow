@@ -47,6 +47,7 @@ int main() {
 
     tryAdventurer(a);
     tryAdventurer(b);
+    //tryAdventurer(s);
 
     tryEncounterSide(a);
     tryEncounterSide(s);

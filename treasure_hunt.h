@@ -19,7 +19,8 @@ requires (T x) {
     { x.pay() } -> ValueType;
     { T::isArmed } -> std::convertible_to<bool>;
     { [] () constexpr { return T::isArmed; }() };
-    // { SafeTreasure<decltype(x.pay())> a(0); x.loot(a) } -> std::same_as<void>;
+    //SafeTreasure<decltype(x.pay())> a(x.pay());
+    { x.loot(SafeTreasure<decltype(x.pay())>(0)) } -> std::same_as<void>;
 };
 
 template<typename T>
