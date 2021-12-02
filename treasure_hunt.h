@@ -35,23 +35,17 @@ class Encounter {
         constexpr Encounter(T& A, U& B) : sideA(A), sideB(B) { };
 };
 
-template <typename T> 
-concept isEncounter = 
-requires (T x) {
-    { Encounter(x) } -> std::same_as<T>;
-};
-
 template <typename T>
-concept Weapon = 
+concept isWeapon = 
 requires (T x) {
 	x.getStrength();
 };
 
 template <typename T> 
-concept Armored = (isAdventurer<T> && Weapon<T>);
+concept isArmored = (isAdventurer<T> && isWeapon<T>);
 
 template <typename T> 
-concept Unarmored = (isAdventurer<T> && !Weapon<T>);
+concept isUnarmored = (isAdventurer<T> && !isWeapon<T>);
 
 /* ***** FUNKCJE RUN ***** */
 template <typename T, typename U>
@@ -67,7 +61,7 @@ constexpr void run(Encounter<T, U> encounter) {
 }
 
 template <typename T, typename U> 
-requires Armored<T> && Armored<U>
+requires isArmored<T> && isArmored<U>
 constexpr void run(Encounter<T, U> encounter) {
     T& A = encounter.sideA;
     U& B = encounter.sideB;
@@ -84,7 +78,7 @@ constexpr void run(Encounter<T, U> encounter) {
 }
 
 template <typename T, typename U>
-requires Armored<T> && Unarmored<U>
+requires isArmored<T> && isUnarmored<U>
 constexpr void run(Encounter<T, U> encounter) {
     T& A = encounter.sideA;
     U& B = encounter.sideB;
@@ -94,7 +88,7 @@ constexpr void run(Encounter<T, U> encounter) {
 }
 
 template <typename T, typename U>
-requires Unarmored<T> && Armored<U>
+requires isUnarmored<T> && isArmored<U>
 constexpr void run(Encounter<T, U> encounter) {
     T& A = encounter.sideA;
     U& B = encounter.sideB;
@@ -104,12 +98,18 @@ constexpr void run(Encounter<T, U> encounter) {
 }
 
 template <typename T, typename U>
-requires Unarmored<T> && Unarmored<U>
-constexpr void run([[maybe_unused]]Encounter<T, U> encounter) {
+requires isUnarmored<T> && isUnarmored<U>
+constexpr void run([[maybe_unused]] Encounter<T, U> encounter) {
 	return;
 }
 
 /* ***** FUNKCJA EXPEDITION  ***** */
+template <typename T> 
+concept isEncounter = 
+requires (T x) {
+    { Encounter(x) } -> std::same_as<T>;
+};
+
 constexpr void expedition(void) {
 	return;
 }
