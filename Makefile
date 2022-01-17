@@ -1,8 +1,11 @@
 CC = g++
-CXXFLAGS = -Wall -Wextra -O2 -std=c++20 -fconcepts-diagnostics-depth=3
+CXXFLAGS = -Wall -Wextra -O2 -std=c++20 -DTEST_NUM=301
 
-ok2: ok2.o
-ok2.o: ok2.cc treasure.h treasure_hunt.h member.h
+hunt_test: hunt_test.o
+hunt_test.o: hunt_test.cc treasure_hunt.h treasure.h member.h
+
+test: test.o
+test.o: test.cc treasure_hunt.h treasure.h member.h
 
 clean:
-	rm -f *.o ok2
+	rm -f *.o hunt_test test
